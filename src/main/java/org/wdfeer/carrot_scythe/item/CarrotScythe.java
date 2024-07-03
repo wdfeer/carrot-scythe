@@ -69,14 +69,12 @@ public class CarrotScythe extends HoeItem {
 
     private double getExtraDamage(ItemStack stack){
         double carrots = stack.getOrCreateNbt().getInt("carrots");
-        return Math.log(carrots) + carrots / 1e5;
+        return Math.log(carrots + 1) + carrots / 1e5;
     }
 
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        stack.damage(1, attacker, (e) -> {
-            e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);
-        });
+        stack.damage(1, attacker, (e) -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
 
         return true;
     }
@@ -88,9 +86,7 @@ public class CarrotScythe extends HoeItem {
             BlockState state = context.getWorld().getBlockState(context.getBlockPos());
             if (state.getBlock() == Blocks.CARROTS && ((CropBlock)Blocks.CARROTS).getAge(state) == 7){
                 context.getWorld().breakBlock(context.getBlockPos(), true, context.getPlayer());
-                context.getStack().damage(1, context.getPlayer(), (e) -> {
-                    e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);
-                });
+                context.getStack().damage(1, context.getPlayer(), (e) -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
 
                 return ActionResult.SUCCESS;
             }
