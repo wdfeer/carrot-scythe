@@ -11,7 +11,7 @@ import org.wdfeer.carrot_scythe.item.CarrotScythe;
 
 public class TheMod implements ModInitializer {
 	public static final String MOD_ID = "carrot_scythe";
-    public static final Logger LOGGER = LoggerFactory.getLogger("carrot-scythe");
+    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
 	@Override
 	public void onInitialize() {

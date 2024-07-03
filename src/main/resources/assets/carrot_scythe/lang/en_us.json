@@ -1,3 +1,4 @@
 {
-  "item.carrot_scythe.carrot_scythe": "Carrot Scythe"
+  "item.carrot_scythe.carrot_scythe": "Carrot Scythe",
+  "carrot_scythe.tooltip": "Carrots Harvested: "
 }
