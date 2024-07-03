@@ -27,6 +27,7 @@ import org.wdfeer.carrot_scythe.TheMod;
 import org.wdfeer.carrot_scythe.material.CarrotMaterial;
 
 import java.util.List;
+import java.util.UUID;
 
 public class CarrotScythe extends HoeItem {
     public static final CarrotScythe INSTANCE = new CarrotScythe();
@@ -64,7 +65,8 @@ public class CarrotScythe extends HoeItem {
         if (slot == EquipmentSlot.MAINHAND){
             double damage = getExtraDamage(stack);
             baseAttributes.put(EntityAttributes.GENERIC_ATTACK_DAMAGE,
-                    new EntityAttributeModifier(TheMod.MOD_ID,
+                    new EntityAttributeModifier(UUID.nameUUIDFromBytes(TheMod.MOD_ID.getBytes()),
+                            TheMod.MOD_ID,
                             damage,
                             EntityAttributeModifier.Operation.ADDITION));
         }
