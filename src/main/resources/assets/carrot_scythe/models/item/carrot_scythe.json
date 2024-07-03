@@ -2,5 +2,17 @@
   "parent": "minecraft:item/handheld",
   "textures": {
     "layer0": "carrot_scythe:item/carrot_scythe"
+  },
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [0, 90, -35],
+      "translation": [0, 4.25, 0],
+      "scale": [1.5, 1.5, 1.5]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [0, 90, 35],
+      "translation": [0, 4.25, 0],
+      "scale": [1.5, 1.5, 1.5]
+    }
   }
 }
