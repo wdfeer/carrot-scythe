@@ -66,6 +66,7 @@ public class CarrotScythe extends HoeItem {
     }
 
     private double getExtraDamage(ItemStack stack){
-        return Math.log(stack.getOrCreateNbt().getInt("carrots"));
+        double carrots = stack.getOrCreateNbt().getInt("carrots");
+        return Math.log(carrots) + carrots / 1e5;
     }
 }
