@@ -1,11 +1,17 @@
 package org.wdfeer.carrot_scythe.item;
 
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CropBlock;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.EntityAttribute;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -15,6 +21,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import org.wdfeer.carrot_scythe.TheMod;
 import org.wdfeer.carrot_scythe.material.CarrotMaterial;
 
 import java.util.List;
@@ -41,5 +48,22 @@ public class CarrotScythe extends HoeItem {
         }
 
         return super.postMine(stack, world, state, pos, miner);
+    }
+
+    @Override
+    public Multimap<EntityAttribute, EntityAttributeModifier> getAttributeModifiers(ItemStack stack, EquipmentSlot slot) {
+        var baseAttributes = ArrayListMultimap.create(getAttributeModifiers(slot));
+        if (slot == EquipmentSlot.MAINHAND){
+            double damage = getExtraDamage(stack);
+            baseAttributes.put(EntityAttributes.GENERIC_ATTACK_DAMAGE,
+                    new EntityAttributeModifier(TheMod.MOD_ID,
+                            damage,
+                            EntityAttributeModifier.Operation.ADDITION));
+        }
+        return baseAttributes;
+    }
+
+    private double getExtraDamage(ItemStack stack){
+        return Math.log(stack.getOrCreateNbt().getInt("carrots"));
     }
 }
