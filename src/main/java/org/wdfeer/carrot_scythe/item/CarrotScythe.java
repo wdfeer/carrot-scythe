@@ -45,6 +45,8 @@ public class CarrotScythe extends HoeItem {
         if (state.getBlock() == Blocks.CARROTS && ((CropBlock)Blocks.CARROTS).getAge(state) == 7){
             NbtCompound nbt = stack.getOrCreateNbt();
             nbt.putInt("carrots", nbt.getInt("carrots") + 1);
+
+            stack.setDamage(0);
         }
 
         return super.postMine(stack, world, state, pos, miner);
