@@ -43,6 +43,11 @@ public class CarrotScythe extends HoeItem {
         tooltip.add(base.append(number).formatted(Formatting.GOLD));
     }
 
+    private static void onCarrotHarvest(ItemStack stack) {
+        incrementCarrots(stack);
+        stack.setDamage(0);
+    }
+
     private static void incrementCarrots(ItemStack stack) {
         NbtCompound nbt = stack.getOrCreateNbt();
         nbt.putInt("carrots", nbt.getInt("carrots") + 1);
@@ -51,9 +56,7 @@ public class CarrotScythe extends HoeItem {
     @Override
     public boolean postMine(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner) {
         if (state.getBlock() == Blocks.CARROTS && ((CropBlock)Blocks.CARROTS).getAge(state) == 7){
-            incrementCarrots(stack);
-
-            stack.setDamage(0);
+            onCarrotHarvest(stack);
         }
 
         return super.postMine(stack, world, state, pos, miner);
@@ -92,8 +95,8 @@ public class CarrotScythe extends HoeItem {
             BlockState state = context.getWorld().getBlockState(context.getBlockPos());
             if (state.getBlock() == Blocks.CARROTS && ((CropBlock)Blocks.CARROTS).getAge(state) == 7){
                 context.getWorld().breakBlock(context.getBlockPos(), true, context.getPlayer());
-                context.getStack().damage(1, context.getPlayer(), (e) -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
-                incrementCarrots(context.getStack());
+
+                onCarrotHarvest(context.getStack());
 
                 return ActionResult.SUCCESS;
             }
