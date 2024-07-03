@@ -1,0 +1,28 @@
+{
+	"schemaVersion": 1,
+	"id": "carrot-scythe",
+	"version": "${version}",
+	"name": "Carrot Scythe",
+	"description": "Adds a carrot scythe which get better with every harvested carrot.",
+	"authors": [
+		"wdfeer"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "GPL-3.0",
+	"icon": "assets/carrot-scythe/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"org.wdfeer.carrot_scythe.TheMod"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	}
+}

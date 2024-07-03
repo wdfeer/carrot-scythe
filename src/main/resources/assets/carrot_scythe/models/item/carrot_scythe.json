@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "carrot_scythe:item/carrot_scythe"
+  }
+}
