@@ -3,13 +3,13 @@
 	"id": "carrot-scythe",
 	"version": "${version}",
 	"name": "Carrot Scythe",
-	"description": "Adds a carrot scythe which get better with every harvested carrot.",
+	"description": "Adds a Carrot Scythe which improves with each harvested carrot.",
 	"authors": [
 		"wdfeer"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://github.com/wdfeer/carrot-scythe",
+		"sources": "https://github.com/wdfeer/carrot-scythe"
 	},
 	"license": "GPL-3.0",
 	"icon": "assets/carrot_scythe/icon.png",

@@ -14,9 +14,11 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsageContext;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -77,5 +79,22 @@ public class CarrotScythe extends HoeItem {
         });
 
         return true;
+    }
+
+    @Override
+    public ActionResult useOnBlock(ItemUsageContext context) {
+        var result = super.useOnBlock(context);
+        if (result == ActionResult.PASS && context.getPlayer() != null){
+            BlockState state = context.getWorld().getBlockState(context.getBlockPos());
+            if (state.getBlock() == Blocks.CARROTS && ((CropBlock)Blocks.CARROTS).getAge(state) == 7){
+                context.getWorld().breakBlock(context.getBlockPos(), true, context.getPlayer());
+                context.getStack().damage(1, context.getPlayer(), (e) -> {
+                    e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);
+                });
+
+                return ActionResult.SUCCESS;
+            }
+        }
+        return result;
     }
 }
