@@ -24,6 +24,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.wdfeer.carrot_scythe.TheMod;
+import org.wdfeer.carrot_scythe.config.CarrotScytheConfig;
 import org.wdfeer.carrot_scythe.material.CarrotMaterial;
 
 import java.util.List;
@@ -78,7 +79,7 @@ public class CarrotScythe extends HoeItem {
 
     private double getExtraDamage(ItemStack stack){
         double carrots = stack.getOrCreateNbt().getInt("carrots");
-        return Math.log(carrots + 1) + carrots / 1e5;
+        return CarrotScytheConfig.logMultiplier * Math.log(carrots + 1) + carrots / CarrotScytheConfig.linearDivisor;
     }
 
     @Override

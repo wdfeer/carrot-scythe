@@ -1,4 +1,8 @@
 {
   "item.carrot_scythe.carrot_scythe": "Carrot Scythe",
-  "carrot_scythe.tooltip": "Carrots Harvested: "
+  "carrot_scythe.tooltip": "Carrots Harvested: ",
+
+  "carrot_scythe.midnightconfig.title": "Carrot Scythe - Damage Config",
+  "carrot_scythe.midnightconfig.logMultiplier": "Logarithmic Multiplier",
+  "carrot_scythe.midnightconfig.linearDivisor": "Linear Divisor"
 }
